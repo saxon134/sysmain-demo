@@ -1,0 +1,27 @@
+name: sysmain-demo
+http:
+  port: 13301
+  host:
+
+sysmain:
+  url: http://127.0.0.1:13300/sysmain
+  clientroot: /sysmain_client
+  secret: 123
+  pingsecond: 5
+
+jwtsecret:
+
+sdp:
+  pingsecond: 5
+
+mq:
+
+redis:
+  host:
+  pass:
+
+mysql:
+  host:
+  pass:
+  user:
+  db: sysmain
