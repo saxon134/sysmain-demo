@@ -19,7 +19,7 @@ func Init() {
 	}
 	Client = task.Init(conf.Conf.Name, conf.Conf.Sysmain.Url, conf.Conf.Sysmain.Secret, host, conf.Conf.Http.Port)
 	Client.Register(
-		//task.Case{Key: "SayHello", Spec: "", Local: false, Handler: SayHello},
-		task.Case{Key: "LocalTask", Spec: "*/2 * * * * *", Local: true, Handler: LocalTask},
+		task.Case{Key: "SayHello", Spec: "", Local: false, Handler: SayHello},
+		//task.Case{Key: "LocalTask", Spec: "*/2 * * * * *", Local: true, Handler: LocalTask},
 	)
 }

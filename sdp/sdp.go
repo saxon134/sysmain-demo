@@ -13,7 +13,7 @@ import (
 var Client *sdp.Client
 
 func Init() {
-	Client = sdp.NewClient(conf.Conf.Sysmain.Url, conf.Conf.Sysmain.Secret, 5)
+	Client = sdp.NewClient(conf.Conf.Sysmain.Url, conf.Conf.Sysmain.ClientRoot, conf.Conf.Sysmain.Secret, 5)
 	var host = conf.Conf.Http.Host
 	if host == "" {
 		ary, err := saHttp.GetLocalIP()
@@ -30,7 +30,7 @@ func Init() {
 
 		//发现服务
 		host, port := Client.Discovery(conf.Conf.Name)
-		saLog.Log(fmt.Sprintf("发现服务%s：%s:%d", conf.Conf.Name, host, port))
+		saLog.Log(fmt.Sprintf("发现服务 %s：%s:%d", conf.Conf.Name, host, port))
 
 		//发送消息
 		err := Client.SendMsg(conf.Conf.Name, host, port, "SDP发送消息测试")

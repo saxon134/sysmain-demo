@@ -5,7 +5,7 @@ http:
 
 sysmain:
   url: http://127.0.0.1:13300/sysmain
-  clientroot: /sysmain_client
+  clientroot: /sysmain-client
   secret: 123
   pingsecond: 5
 
