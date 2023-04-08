@@ -27,10 +27,12 @@ func TaskEventReceiver(w http.ResponseWriter, r *http.Request) {
 }
 
 func TaskStatusReceiver(w http.ResponseWriter, r *http.Request) {
-	var params map[string]string
-	decoder := json.NewDecoder(r.Body)
-	_ = decoder.Decode(&params)
-	saLog.Log("接收到Task status：", params)
+	var params = map[string]string{}
+	if r.URL.Query().Get("key") == "" {
+		api.ResError(w, "缺少任务key")
+		return
+	}
+	params["key"] = r.URL.Query().Get("key")
 
 	//签名校验用
 	params["sign"] = r.Header.Get("sign")

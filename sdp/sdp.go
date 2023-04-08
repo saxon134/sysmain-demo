@@ -13,7 +13,16 @@ import (
 var Client *sdp.Client
 
 func Init() {
-	Client = sdp.NewClient(conf.Conf.Sysmain.Url, conf.Conf.Sysmain.ClientRoot, conf.Conf.Sysmain.Secret, 5)
+	Client = sdp.NewClient(sdp.Conf{
+		SysmainUrl: conf.Conf.Sysmain.Url,
+		ClientRoot: conf.Conf.Sysmain.ClientRoot,
+		Secret:     conf.Conf.Sysmain.Secret,
+		PingSecond: 3,
+		Redis: struct {
+			Host string
+			Pass string
+		}{Host: conf.Conf.Redis.Host, Pass: conf.Conf.Redis.Pass},
+	})
 	var host = conf.Conf.Http.Host
 	if host == "" {
 		ary, err := saHttp.GetLocalIP()
